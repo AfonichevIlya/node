@@ -3,13 +3,12 @@ exports.form = (req, res) => {
   res.render(`register`, {});
 };
 exports.submit = (req, res, next) => {
-  User.findByEmail(req.body.dataForm.email, (err, user) => {
-    const email = req.body.user.email;
+  User.findByEmail(req.body.email, (err, user) => {
     if (err) return next(err);
     if (user) {
-      res.error("Пользователь с таким email уже существует");
+      console.log("Пользователь с таким email уже существует");
     } else {
-      User.create(req.body.user, (err) => {
+      User.create(req.body, (err) => {
         if (err) return next(err);
       });
     }
