@@ -4,27 +4,28 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/bootstrap.css" />
-    <script defer src="./css/bootstrap-5.3.2/dist/js/bootstrap.js"></script>
+
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./css/index.css" />
+    <!-- <link rel="stylesheet" href="./error.css" /> -->
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="css/bootstrap-5.3.2/dist/css/bootstrap.css" />
     <title>Error</title>
   </head>
   <body>
-    <header><%- include('./partials/header'); %></header>
-    <div class="container">
-      <div class="container_error-body">
-        <h4 class="error-body_head">Error</h4>
-        <img src="error.jpg" alt="ERROR 404" class="error-body_img" />
-        <%if(err.status === 404){%>
-        <h1><%=err.message%></h1>
-        <img src="<%=link%>" alt="kukushka" />
-        <%}%>
-        <p class="error-body_main">Error! Please back later</p>
+    <header><%- include('header.ejs')%></header>
+    <section class="container">
+      <h1 class="title"><span>404</span><br />we couldn't find the page!</h1>
+      <p>
+        Sorry, but the page you are looking for was either not found or does not
+        exist .
+      </p>
+    </section>
 
-        <p class="test">kfjhkjsdfhkdfjhkj</p>
-      </div>
-    </div>
-    <footer><%- include('./partials/footer')%></footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <footer><%- include('footer.ejs')%></footer>
   </body>
 </html>

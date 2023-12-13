@@ -31,10 +31,15 @@ class User {
     User.findByEmail(dataForm.email, (error, user) => {
       if (error) return cb(error);
       if (!user) return cb();
+      const result = bcrypt.compare(
+        dataForm.password,
+        user.password,
+        (err, result) => {
+          if (result) return cb(null, user);
+          cb(); //ToDo: check
+        }
+      );
     });
-
-    const result = bcrypt.compare(dataForm.password, user.password);
-    if (result) return cb(user); //ToDo: check
   }
 }
 

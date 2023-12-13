@@ -1,13 +1,36 @@
-* {
-  font-family: sans-serif;
+body {
+}
+.container {
+  width: 100%;
+  margin-top: 100px;
+}
+.logo {
+  text-transform: uppercase;
+  letter-spacing: 10px;
 }
 
-.klass {
-  background-color: aqua;
-  border: 1px solid black;
+.title {
+  text-align: center;
+  padding-top: 30px;
+  font-size: 60px;
+  color: #7f8fa6;
+  text-transform: uppercase;
+}
+img,
+svg {
+  vertical-align: middle;
+  width: 40%;
+  margin-left: 30%;
 }
 
-img {
-  width: 450px;
-  height: 300px;
+footer {
+  position: absolute;
+  min-width: 100%;
+  bottom: 0;
+}
+footer p {
+  font-size: 15px;
+}
+span.name {
+  width: 400px;
 }

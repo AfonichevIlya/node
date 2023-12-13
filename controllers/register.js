@@ -11,6 +11,8 @@ exports.submit = (req, res, next) => {
     } else {
       User.create(req.body, (err) => {
         if (err) return next(err);
+        req.session.userEmail = req.body.dataForm.email;
+        req.session.userName = req.body.dataForm.name;
       });
     }
     res.redirect("/");

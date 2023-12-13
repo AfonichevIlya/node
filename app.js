@@ -55,7 +55,7 @@ function logger(port, router) {
 console.log(app.get("env"));
 
 app.use(favicon(__dirname + "/public/favicon.ico"));
-
+app.use(userSession);
 app.use(myRoutes);
 
 app.listen(port, () => {
@@ -88,5 +88,3 @@ if (app.get("env") != "development") {
     console.log(app.get("env"), err.status, err.message);
   });
 }
-
-// kjsdhkdsh

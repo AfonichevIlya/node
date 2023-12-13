@@ -7,11 +7,10 @@
     <link rel="stylesheet" href="/css/bootstrap.css" />
     <script defer src="./css/bootstrap-5.3.2/dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="./css/index.css" />
     <title><%= title%></title>
   </head>
   <body>
-    <%-include ('./partials/menu')>
+    <header><%- include('./partials/menu'); %></header>
     <header><%- include('./partials/header'); %></header>
     <p class="card-text">Скоро...</p>
     <footer><%- include('./partials/footer')%></footer>
