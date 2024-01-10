@@ -1,0 +1,220 @@
+* {
+  font-family: sans-serif;
+}
+header {
+  top: 0;
+}
+nav.bg-body-tertiary {
+  margin-left: auto;
+  margin-right: auto;
+  background-color: transparent !important;
+  width: 75%;
+  top: 10px;
+}
+#menu {
+  display: flex;
+  color: #ffcaa2;
+  flex-direction: row;
+  align-items: center;
+}
+#a11 {
+  right: 0;
+  margin-left: 10px;
+  padding: 10px 25px 10px 25px;
+  text-align: center;
+  background-color: #3c547b !important;
+  color: #ffcaa2;
+  text-decoration: none;
+  margin-top: -7px;
+}
+#a1 {
+  right: 0;
+  margin-left: 10px;
+  padding: 10px 25px 10px 25px;
+  text-align: center;
+  background-color: #3c547b !important;
+  color: #ffcaa2;
+  text-decoration: none;
+  margin-top: -7px;
+}
+
+.klass {
+  background-color: aqua;
+  border: 1px solid black;
+}
+nav.bg-light {
+  background-color: transparent !important;
+}
+.nav-link {
+  color: #e1b382;
+}
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+  color: #ffcaa2;
+}
+.navbar-brand {
+  font-family: "Rubik One", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #5eacff 33%, #0066ff 56%, #e1b382 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #e1b382;
+  display: table;
+
+  opacity: 0; /* начальное значение непрозрачности */
+  animation: fadeIn ease-in 1; /* добавляем анимацию fadeIn */
+  animation-fill-mode: forwards; /* будет видимым после завершения анимации */
+  animation-duration: 0.5s;
+}
+.navbar-brand:hover {
+  font-family: "Rubik One", sans-serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #e1b382 33%, #0066ff 56%, #5eacff 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #e1b382;
+  display: table;
+  opacity: 0; /* начальное значение непрозрачности */
+  animation: fadeIn ease-in 1; /* добавляем анимацию fadeIn */
+  animation-fill-mode: forwards; /* будет видимым после завершения анимации */
+  animation-duration: 0.5s;
+}
+img {
+  width: 450px;
+  height: 300px;
+}
+body {
+  background-image: url(./img/1675419004_gas-kvas-com-p-fonovie-risunki-4k-19.jpg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+footer {
+  background-color: transparent !important;
+  min-width: 100%;
+  bottom: 0;
+}
+footer.border-top {
+  border: none !important;
+}
+.text-muted {
+  color: #e1b382 !important;
+}
+.nav-link.px-2 {
+  color: #e1b382;
+}
+.nav-link:hover {
+  color: rgb(255, 182, 93);
+}
+.container {
+  min-width: 100%;
+  background-color: #041115a6;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+.container2 {
+  min-width: 58%;
+  background-color: #041115a6;
+  padding-top: 120px;
+  padding-bottom: 120px;
+}
+.container1 {
+  text-align: center;
+  margin-bottom: auto;
+  min-width: 100%;
+  min-height: 900px;
+  background-color: #ffffff00;
+  font-size: 200px !important;
+}
+.h1,
+h1 {
+  font-family: "Rubik One", sans-serif;
+  font-size: 150px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    45deg,
+    #b74553 7%,
+    #062649 20%,
+    #113964 60%,
+    #2c62b3 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #e1b382;
+  display: table;
+  margin: 20px auto;
+  opacity: 0; /* начальное значение непрозрачности */
+  animation: fadeIn ease-in 1; /* добавляем анимацию fadeIn */
+  animation-fill-mode: forwards; /* будет видимым после завершения анимации */
+  animation-duration: 0.5s;
+}
+
+.typewriter h4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  max-width: 940px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    45deg,
+    #b74553 20%,
+    #16385c 37%,
+    #16385c 70%,
+    #2c62b3 85%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: #e1b382;
+  color: #00022e;
+  position: absolute;
+  left: 25%;
+  top: 300px;
+  font-family: monospace;
+  margin: 0 auto; /* Centers the h4 element */
+  letter-spacing: 0.15em; /* Adjust as needed */
+  white-space: pre-wrap; /* Allows text wrapping and preserves whitespace */
+  /* Remove the border-right style used for the cursor */
+}
+
+/* Add a class for the blinking cursor */
+.cursor {
+  display: inline;
+  font-weight: bold;
+  color: orange;
+  animation: blink-caret 0.5s step-end infinite;
+}
+
+@keyframes blink-caret {
+  50% {
+    color: transparent;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.container2 {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 900px;
+  color: #e1b382;
+}
+.profile-img {
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.profile-button {
+  /* Ваши стили для кнопки "Профиль" */
+}

@@ -1,26 +1,39 @@
 const sqlite3 = require("sqlite3").verbose();
-const bcrypt = require("bcrypt");
-const res = require("express/lib/response");
 const db = new sqlite3.Database("test.sqlite");
 
 const sql =
-  "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL, age INT NOT NULL)";
+  "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL, age INT NOT NULL, role TEXT DEFAULT 'user')";
 
 db.run(sql);
 
 class User {
   constructor() {}
-  static async create(dataForm, next, cb) {
-    try {
-      const salt = await bcrypt.genSalt(10);
-      const hash = await bcrypt.hash(dataForm.password, salt);
 
-      const sql1 =
-        "INSERT INTO users (name, email, password, age) VALUES (?, ?, ?, ?)";
-      db.run(sql1, dataForm.name, dataForm.email, hash, dataForm.age, cb);
-    } catch (error) {
-      if (error) return next(error);
-    }
+  static createGuest(cb) {
+    const guestData = {
+      name: "гость",
+      email: "guest@nomail.com", // A dummy email for the guest
+      age: 0,
+      role: "guest",
+    };
+    // Call the callback function with guestData
+    cb(null, guestData);
+  }
+  static create(dataForm, cb) {
+    dataForm.role = dataForm.role || "user";
+    const sql1 =
+      "INSERT INTO users (name, email, password, age, role) VALUES (?, ?, ?, ?, ?)";
+    db.run(
+      sql1,
+      dataForm.name,
+      dataForm.email,
+      dataForm.password,
+      dataForm.age,
+      dataForm.role,
+      function (err) {
+        cb(err, { ...dataForm, id: this.lastID }); // Use the newly inserted ID and rest of the dataForm to return the new user object
+      }
+    );
   }
 
   static findByEmail(email, cb) {
@@ -31,14 +44,11 @@ class User {
     User.findByEmail(dataForm.email, (error, user) => {
       if (error) return cb(error);
       if (!user) return cb();
-      const result = bcrypt.compare(
-        dataForm.password,
-        user.password,
-        (err, result) => {
-          if (result) return cb(null, user);
-          cb(); //ToDo: check
-        }
-      );
+      if (dataForm.password === user.password) {
+        return cb(null, user);
+      } else {
+        cb();
+      }
     });
   }
 }

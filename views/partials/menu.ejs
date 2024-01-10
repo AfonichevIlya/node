@@ -1,23 +1,23 @@
-<link rel="stylesheet" href="../../public/error.css" />
 <nav class="navbar navbar-expand navbar-light bg-light justify-content-end">
   <div class="nav navbar-nav">
-    <% if (locals.user) { %>
+    <% if(locals.user) { %>
     <div id="menu">
-      <%# меню пользователей выполнивших вход%>
-      <span class="name"><%= user.email %> </span> <%# user.name для браузера то
-      что пользователь послал в requeste%>
-      <a class="badge rounded-pill bg-primary" href="/post" aria-current="page"
-        >Post<span class="visually-hidden">(current)</span></a
-      >
-      <a class="badge rounded-pill bg-warning" href="/logout">Logout</a>
+      <% if (locals.user.role !== "guest") { %>
+
+      <h6>Здравствуйте, <span class="name"><%= locals.user.name %></span>!</h6>
+      <a id="a11" class="badge rounded-pill bg-primary" href="/post">Пост</a>
+      <% } else { %>
+      <h6>Вы вошли как <span class="name"> <%= locals.user.name %></span></h6>
+      <% } %>
+      <a id="a1" class="badge rounded-pill bg-warning" href="/logout">Выход</a>
     </div>
     <% } else { %>
-    <div class="" id="menu">
-      <%# //меню анонимных пользователей %>
-      <a class="badge rounded-pill bg-info" href="/login" aria-current="page"
-        >Login<span class="visually-hidden">(current)</span></a
+    <!-- Меню для анонимных пользователей -->
+    <div id="menu">
+      <a id="a1" class="badge rounded-pill bg-info" href="/login">Вход</a>
+      <a id="a1" class="badge rounded-pill bg-info" href="/register"
+        >Регистрация</a
       >
-      <a class="badge rounded-pill bg-info" href="/register">Register</a>
     </div>
     <% } %>
   </div>
