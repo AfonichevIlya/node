@@ -25,9 +25,15 @@
   align-items: center;
   margin: 15vh;
 }
-
 .register-content div {
   max-width: 1000px;
+}
+
+.login-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15vh;
 }
 
 .login-content {
@@ -38,4 +44,4 @@
 }
 .login-content div {
   max-width: 1000px;
-} /*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
