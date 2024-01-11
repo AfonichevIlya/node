@@ -16,8 +16,6 @@ db.run(createTableSQL, (err) => {
   if (err) {
     throw err;
   }
-
-  console.log("Table 'entries' created or already exists.");
 });
 class Entry {
   constructor() {}

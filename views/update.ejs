@@ -9,11 +9,15 @@
     <link rel="stylesheet" href="../style.css" />
   </head>
   <body>
+    <header><%- include('./partials/header'); %></header>
+    <h1><%= title %></h1>
     <div class="container">
-      <header><%- include('./partials/header'); %></header>
-      <h1><%= title %></h1>
       <p>Заполните форму ниже чтобы изменить пост</p>
-      <form method="post" action="/update/<%= entry.id %>?_method=PUT>">
+      <form
+        method="post"
+        action="/update/<%= entry.id %>?_method=PUT"
+        enctype="multipart/form-data"
+      >
         <div class="mb-3">
           <label for="z" class="form-label">Title</label>
           <input
@@ -31,6 +35,10 @@
           <textarea class="form-control" name="entry[content]" id="s" rows="3">
 <%= entry.content %></textarea
           >
+        </div>
+        <div class="mb-3">
+          <label for="image" class="form-label">New Image</label>
+          <input type="file" class="form-control" id="image" name="newImage" />
         </div>
         <button type="submit" value="Post" class="btn btn-primary">
           Submit

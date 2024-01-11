@@ -12,8 +12,6 @@ const app = express();
 const myRoutes = require("./routers/index_routers");
 const port = "3000";
 
-const filePath = path.join(__dirname, "tmp", "1.txt");
-
 //
 
 app.set("view engine", "ejs");
@@ -60,21 +58,12 @@ app.listen(port, () => {
 
 app.get("env") == "production";
 
-console.log(app.get("env"));
-
 if (app.get("env") == "production") {
   app.use((req, res, err) => {
     res.status(err.status);
     res.sendFile(err.message);
   });
 }
-
-//ERROR HANDLER
-app.use((req, res, next) => {
-  const err = new Error("Could't get path");
-  err.status = 404;
-  next(err);
-});
 
 if (app.get("env") != "development") {
   app.use(function (err, req, res, next) {

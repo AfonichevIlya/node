@@ -3,20 +3,18 @@ const db = new sqlite3.Database("test.sqlite");
 
 const sql =
   "CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL, age INT NOT NULL, role TEXT DEFAULT 'user')";
-
 db.run(sql);
-
 class User {
   constructor() {}
 
   static createGuest(cb) {
     const guestData = {
       name: "гость",
-      email: "guest@nomail.com", // A dummy email for the guest
+      email: "guest@nomail.com",
       age: 0,
       role: "guest",
     };
-    // Call the callback function with guestData
+
     cb(null, guestData);
   }
   static create(dataForm, cb) {
@@ -31,7 +29,7 @@ class User {
       dataForm.age,
       dataForm.role,
       function (err) {
-        cb(err, { ...dataForm, id: this.lastID }); // Use the newly inserted ID and rest of the dataForm to return the new user object
+        cb(err, { ...dataForm, id: this.lastID });
       }
     );
   }

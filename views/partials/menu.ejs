@@ -14,6 +14,14 @@
     <% } else { %>
     <!-- Меню для анонимных пользователей -->
     <div id="menu">
+      <button
+        id="a1"
+        class="badge rounded-pill bg-info"
+        type="button"
+        onclick="window.location.href='/guest';"
+      >
+        Войти как гость
+      </button>
       <a id="a1" class="badge rounded-pill bg-info" href="/login">Вход</a>
       <a id="a1" class="badge rounded-pill bg-info" href="/register"
         >Регистрация</a

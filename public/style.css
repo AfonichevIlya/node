@@ -106,9 +106,9 @@ body {
 }
 
 footer {
+  position: absolute;
   background-color: transparent !important;
   min-width: 100%;
-  bottom: 0;
 }
 
 footer.border-top {
@@ -128,9 +128,9 @@ footer.border-top {
 }
 
 .container {
-  min-width: 100%;
-  background-color: rgba(4, 17, 21, 0.6509803922);
-  padding-top: 120px;
+  max-width: 70%;
+  background-color: rgba(4, 17, 21, 0.7607843137);
+  padding-top: 50px;
   padding-bottom: 120px;
 }
 
@@ -188,6 +188,17 @@ h1 {
   /* Remove the border-right style used for the cursor */
 }
 
+#typewriter2 h4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  max-width: 940px;
+  background-color: rgba(0, 0, 0, 0.4274509804);
+  text-transform: uppercase;
+  color: #e65e5e;
+  top: 500px;
+}
+
 /* Add a class for the blinking cursor */
 .cursor {
   display: inline;
@@ -224,4 +235,86 @@ h1 {
 
 .profile-button {
   /* Ваши стили для кнопки "Профиль" */
+}
+
+.card-body {
+  background-color: #181818;
+  color: #e1b382;
+  border-radius: 5px;
+  border-color: #e1b382;
+}
+
+#a2 {
+  background-color: rgb(60, 17, 17);
+  color: bisque;
+  -webkit-animation: ease-in-out;
+  border: 2px solid bisque;
+  border-radius: 20px;
+  padding: 5px 15px 5px 15px;
+  box-shadow: 3px 4px 0px 1.2px rgb(0, 0, 0);
+  animation: 1.5s infinite back;
+}
+
+#a2:hover {
+  background-color: rgb(255, 0, 0);
+  color: bisque;
+  transform: scale(1.12);
+  border: 2px solid bisque;
+  box-shadow: none;
+}
+
+#a2:active {
+  transform: scale(0.98);
+  box-shadow: 0px 3px 3px 1.2px rgb(0, 0, 0) inset;
+  transition: 0.08s;
+}
+
+#a3 {
+  background-color: rgb(17, 21, 60);
+  color: bisque;
+  -webkit-animation: ease-in-out;
+  border: 2px solid bisque;
+  border-radius: 20px;
+  padding: 5px 15px 5px 15px;
+  box-shadow: 3px 4px 0px 1.2px rgb(0, 0, 0);
+  animation: 1.5s infinite back;
+}
+
+#a3:hover {
+  background-color: rgb(60, 0, 255);
+  color: bisque;
+  transform: scale(1.12);
+  border: 2px solid bisque;
+  box-shadow: none;
+}
+
+#a3:active {
+  transform: scale(0.98);
+  box-shadow: 0px 3px 3px 1.2px rgb(0, 0, 0) inset;
+  transition: 0.08s;
+}
+
+#sub {
+  background-color: rgb(21, 60, 17);
+  color: bisque;
+  -webkit-animation: ease-in-out;
+  border: 2px solid bisque;
+  border-radius: 20px;
+  padding: 5px 15px 5px 15px;
+  box-shadow: 3px 4px 0px 1.2px rgb(0, 0, 0);
+  animation: 1.5s infinite back;
+}
+
+#sub:hover {
+  background-color: rgb(0, 255, 55);
+  color: bisque;
+  transform: scale(1.12);
+  border: 2px solid bisque;
+  box-shadow: none;
+}
+
+#sub:active {
+  transform: scale(0.98);
+  box-shadow: 0px 3px 3px 1.2px rgb(0, 0, 0) inset;
+  transition: 0.08s;
 }/*# sourceMappingURL=style.css.map */
