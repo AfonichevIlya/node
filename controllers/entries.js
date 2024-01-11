@@ -71,7 +71,6 @@ exports.submit = (req, res, next) => {
 };
 exports.delete = (req, res, next) => {
   const entryId = req.params.id;
-
   Entry.delete(entryId, (err) => {
     if (err) {
       return next(err);
