@@ -49,9 +49,9 @@
                 required=""
                 />
                 <label for="validationCustomPas">Введите пароль</label>
-                <div class="invalid-feedback">
-                  Пожалуйста, введите ваш пароль.
-                </div>
+                <% if (typeof errorMessage !== 'undefined') { %>
+                  <div style="color: red; margin-top: 5px;" class="error-message"><%= errorMessage %></div>
+                <% } %>
               </div>
               <label class="form"><input id="eye" type="checkbox" class="password-checkbox"> Показать пароль</label>  
             </div>

@@ -7,8 +7,10 @@ exports.submit = (req, res, next) => {
   User.authentificate(req.body.loginForm, (error, data) => {
     if (error) return next(error);
     if (!data) {
-      console.log("Имя или пароль неверный");
-      res.redirect("back");
+      res.render("loginForm", {
+        title: "Login",
+        errorMessage: "Почта или пароль неверные",
+      });
     } else {
       req.session.userEmail = data.email;
       req.session.userName = data.name;
@@ -22,9 +24,7 @@ exports.logout = function (req, res) {
       console.error("Ошибка при уничтожении сессии: ", err);
       return res.redirect("back");
     }
-    // Сбросить данные пользователя в locals
     res.locals.user = null;
-    // Перенаправление на главную страницу, где будет отображаться меню с 'Login' и 'Register'
     res.redirect("/");
   });
 };

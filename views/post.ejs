@@ -11,18 +11,18 @@
   <body>
     <header><%- include('./partials/header'); %></header>
     <h1><%= title %></h1>
-    <div class="container2">
-      <p>Заполните форму ниже чтобы добавить новый пост</p>
+    <div class="container">
+      <h3>Заполните форму ниже чтобы добавить новый пост</h3>
       <form action="/post" method="post" enctype="multipart/form-data">
         <div class="mb-3">
-          <label for="z" class="form-label">Title</label>
+          <label for="z" class="form-label">Заголовок</label>
           <input
             type="text"
             class="form-control"
             name="entry[title]"
             id="z"
             aria-describedby="helpId"
-            placeholder="Title"
+            placeholder="Заголовок"
           />
         </div>
         <div class="mb-3">
@@ -31,7 +31,7 @@
             class="form-control"
             name="entry[content]"
             id="s"
-            rows="3"
+            rows="4"
           ></textarea>
         </div>
         <div class="mb-3">

@@ -3,10 +3,11 @@ const router = express.Router();
 const register = require("../controllers/register");
 const login = require("../controllers/login");
 const entries = require("../controllers/entries");
-const validatePassword = require("../middleware/pass_validation");
+const validatePassword = require("../middleWare/pass_validation");
 const User = require("../models/user");
 const timeSince = require("../middleware/timeSince"); // Adjust the path to wherever your timeSince.js file is located
-
+const multer = require("multer");
+const path = require("path");
 router.get("/", entries.list);
 
 router.get("/post", entries.form);
@@ -62,5 +63,62 @@ router.get("/guest", (req, res) => {
     res.redirect("/"); // Redirect the guest to homepage or wherever appropriate
   });
 });
+router.get("/profile", (req, res) => {
+  if (!req.session.userEmail) {
+    return res.redirect("/login");
+  }
 
+  User.findByEmail(req.session.userEmail, (err, user) => {
+    if (err || !user) {
+      res
+        .status(500)
+        .send("Произошла ошибка при получении информации о пользователе");
+    } else {
+      res.render("profile", { title: "Профиль", user: user });
+    }
+  });
+});
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/avatars/"); // Указываем папку для загрузки
+  },
+  filename: function (req, file, cb) {
+    // Генерируем уникальное имя файла
+    cb(
+      null,
+      file.fieldname + "-" + Date.now() + path.extname(file.originalname)
+    );
+  },
+});
+
+const upload = multer({ storage: storage });
+
+// Добавьте маршрут на POST запрос для загрузки аватара
+router.post("/profile", upload.single("avatar"), (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send("Нет файла для загрузки");
+  }
+});
+router.post("/profile/avatar", upload.single("avatar"), (req, res, next) => {
+  if (!req.file) {
+    return res.status(400).send("Нет файла для загрузки.");
+  }
+
+  // Получаем путь к загруженному аватару
+  const avatarPath = req.file.filename;
+
+  // Предполагаем, что функция User.updateAvatar принимает email пользователя, путь к новому аватару и коллбэк
+  User.updateAvatar(req.session.userEmail, avatarPath, (err) => {
+    if (err) {
+      // Обработаем ошибку, если что-то пошло не так
+      console.error(err);
+      return res
+        .status(500)
+        .send("Ошибка при обновлении аватара пользователя.");
+    } else {
+      // Если все прошло успешно, перенаправляем пользователя на страницу профиля
+      return res.redirect("/profile");
+    }
+  });
+});
 module.exports = router;

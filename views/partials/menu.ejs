@@ -3,13 +3,30 @@
     <% if(locals.user) { %>
     <div id="menu">
       <% if (locals.user.role !== "guest") { %>
+      <img
+        src="/avatars/<%= user.avatar %>"
+        onerror="this.onerror=null;this.src='img/ava.jpg';"
+        alt="Аватар"
+        style="
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          margin-right: 10px;
+        "
+      />
 
-      <h6>Здравствуйте, <span class="name"><%= locals.user.name %></span>!</h6>
-      <a id="a11" class="badge rounded-pill bg-primary" href="/post">Пост</a>
+      <h6 style="margin-top: 10px; margin-right: 10px">
+        Здравствуйте, <span class="name"><%= locals.user.name %></span>!
+      </h6>
+      <a id="a4" class="badge rounded-pill" href="/profile">Профиль</a>
+
+      <a id="a3" class="badge rounded-pill" href="/post">Пост</a>
       <% } else { %>
-      <h6>Вы вошли как <span class="name"> <%= locals.user.name %></span></h6>
+      <h6 style="margin-right: 15px">
+        Вы вошли как <span class="name"> <%= locals.user.name %></span>
+      </h6>
       <% } %>
-      <a id="a1" class="badge rounded-pill bg-warning" href="/logout">Выход</a>
+      <a id="a2" class="badge rounded-pill" href="/logout">Выход</a>
     </div>
     <% } else { %>
     <!-- Меню для анонимных пользователей -->
@@ -22,10 +39,8 @@
       >
         Войти как гость
       </button>
-      <a id="a1" class="badge rounded-pill bg-info" href="/login">Вход</a>
-      <a id="a1" class="badge rounded-pill bg-info" href="/register"
-        >Регистрация</a
-      >
+      <a id="sub" class="badge rounded-pill" href="/login">Вход</a>
+      <a id="a3" class="badge rounded-pill" href="/register">Регистрация</a>
     </div>
     <% } %>
   </div>
