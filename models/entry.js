@@ -20,7 +20,6 @@ db.run(createTableSQL, (err) => {
 class Entry {
   constructor() {}
   static create(data, cb) {
-    // Получаем текущее время в Московском часовом поясе
     data.created_at = moment()
       .tz("Europe/Moscow")
       .format("YYYY-MM-DD HH:mm:ss");

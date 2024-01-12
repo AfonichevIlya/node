@@ -17,21 +17,16 @@ module.exports = function (req, res, next) {
     User.findByEmail(req.session.userEmail, (error, user) => {
       if (error) return next(error);
 
-      // Если пользователь найден в базе данных
       if (user) {
         req.user = user;
       } else {
-        // Если в базе данных нет пользователя с такой электронной почтой
-        // можно либо создать пользователя, либо обработать этот случай
-        req.session.destroy(); //может быть, вы захотите очистить сессию
+        req.session.destroy();
         req.user = undefined;
       }
-      res.locals.user = req.user; // делаем этот выбор доступным в шаблонах
+      res.locals.user = req.user;
       return next();
     });
   } else {
-    // Если сессия не указывает, что пользователь гость и не содержит данные пользователя
-    // не назначаем req.user и res.locals.user и просто переходим к следующему middleware
     return next();
   }
 };

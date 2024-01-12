@@ -5,7 +5,7 @@ const login = require("../controllers/login");
 const entries = require("../controllers/entries");
 const validatePassword = require("../middleWare/pass_validation");
 const User = require("../models/user");
-const timeSince = require("../middleware/timeSince"); // Adjust the path to wherever your timeSince.js file is located
+const timeSince = require("../middleware/timeSince"); 
 const multer = require("multer");
 const path = require("path");
 router.get("/", entries.list);
@@ -39,11 +39,10 @@ router.get("/logout", (req, res) => {
       if (err) {
         console.error(err);
       }
-      res.locals.user = null; // Clear user from locals
+      res.locals.user = null; 
       res.redirect("/");
     });
   } else {
-    // If there's no session, just clear `locals.user` and redirect
     res.locals.user = null;
     res.redirect("/");
   }
@@ -51,16 +50,15 @@ router.get("/logout", (req, res) => {
 router.get("/guest", (req, res) => {
   User.createGuest((error, guestUser) => {
     if (error) {
-      // Handle error
       console.error("Error creating guest user:", error);
       return res.redirect("/register");
     }
 
-    // Set guest details in the session
+    
     req.session.userEmail = guestUser.email;
     req.session.userName = guestUser.name;
-    req.session.isGuest = true; // Устанавливаем флаг isGuest в true
-    res.redirect("/"); // Redirect the guest to homepage or wherever appropriate
+    req.session.isGuest = true;
+    res.redirect("/"); /
   });
 });
 router.get("/profile", (req, res) => {
@@ -80,10 +78,9 @@ router.get("/profile", (req, res) => {
 });
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/avatars/"); // Указываем папку для загрузки
+    cb(null, "public/avatars/"); 
   },
   filename: function (req, file, cb) {
-    // Генерируем уникальное имя файла
     cb(
       null,
       file.fieldname + "-" + Date.now() + path.extname(file.originalname)
@@ -93,7 +90,6 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-// Добавьте маршрут на POST запрос для загрузки аватара
 router.post("/profile", upload.single("avatar"), (req, res, next) => {
   if (!req.file) {
     return res.status(400).send("Нет файла для загрузки");
@@ -104,19 +100,15 @@ router.post("/profile/avatar", upload.single("avatar"), (req, res, next) => {
     return res.status(400).send("Нет файла для загрузки.");
   }
 
-  // Получаем путь к загруженному аватару
   const avatarPath = req.file.filename;
 
-  // Предполагаем, что функция User.updateAvatar принимает email пользователя, путь к новому аватару и коллбэк
   User.updateAvatar(req.session.userEmail, avatarPath, (err) => {
     if (err) {
-      // Обработаем ошибку, если что-то пошло не так
       console.error(err);
       return res
         .status(500)
         .send("Ошибка при обновлении аватара пользователя.");
     } else {
-      // Если все прошло успешно, перенаправляем пользователя на страницу профиля
       return res.redirect("/profile");
     }
   });

@@ -12,10 +12,9 @@ exports.submit = [
   (req, res, next) => {
     const { email } = req.body;
     if (!validateEmail(email)) {
-      // Рендерим форму с сообщением об ошибке
       res.render("registerForm", {
         title: "Register",
-        emailError: "Неверный формат электронной почты.", // Сообщение об ошибке
+        emailError: "Неверный формат электронной почты.",
       });
     } else {
       User.findByEmail(req.body.email, (error, user) => {
