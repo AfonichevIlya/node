@@ -5,18 +5,21 @@ const login = require("../controllers/login");
 const entries = require("../controllers/entries");
 const validatePassword = require("../middleWare/pass_validation");
 const User = require("../models/user");
-const timeSince = require("../middleware/timeSince"); 
+const timeSince = require("../middleware/timeSince");
 const multer = require("multer");
 const path = require("path");
+const validate = require("../middleWare/validation");
+
 router.get("/", entries.list);
 
 router.get("/post", entries.form);
-router.post("/post", (req, res, next) => {
-  if (req.user.role === "guest") {
-    return res.status(403).send("Guests cannot post.");
-  }
-  entries.submit(req, res, next);
-});
+router.post(
+  "/post",
+  validate.required("entry[title]"),
+  validate.required("entry[content]"),
+  validate.lenghtAbove("entry[title]"),
+  entries.submit
+);
 
 router.get("/update/:id", entries.updateForm);
 router.post("/update/:id", entries.updateSubmit);
@@ -39,7 +42,7 @@ router.get("/logout", (req, res) => {
       if (err) {
         console.error(err);
       }
-      res.locals.user = null; 
+      res.locals.user = null;
       res.redirect("/");
     });
   } else {
@@ -54,11 +57,10 @@ router.get("/guest", (req, res) => {
       return res.redirect("/register");
     }
 
-    
     req.session.userEmail = guestUser.email;
     req.session.userName = guestUser.name;
     req.session.isGuest = true;
-    res.redirect("/"); /
+    res.redirect("/");
   });
 });
 router.get("/profile", (req, res) => {
@@ -78,7 +80,7 @@ router.get("/profile", (req, res) => {
 });
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "public/avatars/"); 
+    cb(null, "public/avatars/");
   },
   filename: function (req, file, cb) {
     cb(

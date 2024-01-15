@@ -1,6 +1,5 @@
 const sqlite3 = require("sqlite3").verbose();
 const db = new sqlite3.Database("test.db");
-const moment = require("moment-timezone");
 
 const createTableSQL = `
   CREATE TABLE IF NOT EXISTS entries (

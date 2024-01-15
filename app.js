@@ -5,15 +5,13 @@ const path = require("path");
 const { nextTick } = require("process");
 const ejs = require("ejs");
 const session = require("express-session");
-const methodOverride = require("method-override");
-
+const message = require("./middleWare/message");
 const userSession = require("./middleware/user_session");
 const app = express();
 const myRoutes = require("./routers/index_routers");
 const port = "3000";
 
-//
-
+app.use(message);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -22,12 +20,9 @@ console.log(app.get("env"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
-
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "css")));
 app.use(express.static(path.join(__dirname, "views")));
-
-app.use(methodOverride("_method"));
 
 app.use(
   session({
