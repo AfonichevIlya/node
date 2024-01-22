@@ -7,7 +7,7 @@ exports.submit = (req, res, next) => {
   User.authentificate(req.body.loginForm, (error, data) => {
     if (error) return next(error);
     if (!data) {
-      res.render("loginForm", {
+      res.error("loginForm", {
         title: "Login",
         errorMessage: "Почта или пароль неверные",
       });

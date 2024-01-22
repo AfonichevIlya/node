@@ -11,7 +11,6 @@ const app = express();
 const myRoutes = require("./routers/index_routers");
 const port = "3000";
 
-app.use(message);
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 
@@ -44,6 +43,7 @@ app.use(
 
 app.use(favicon(__dirname + "/public/favicon.ico"));
 
+app.use(message);
 app.use(userSession);
 app.use(myRoutes);
 
