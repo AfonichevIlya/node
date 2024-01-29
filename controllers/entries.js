@@ -1,10 +1,10 @@
+const logger = require("../logger/index");
 const Entry = require("../models/entry");
 const path = require("path");
 const timeSince = require("../middleware/timeSince");
 exports.list = (req, res, next) => {
   Entry.selectAll((err, entries) => {
     if (err) return next(err);
-
     const userData = req.user;
     res.render("entries", {
       title: "List",
@@ -12,6 +12,7 @@ exports.list = (req, res, next) => {
       user: userData,
       timeSince: timeSince,
     });
+    logger.info("Зашли на страницу");
   });
 };
 

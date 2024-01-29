@@ -1,16 +1,14 @@
-exports.getField = (field) => {
-  let value;
-  field.forEach((element) => {
-    value = req.body(element);
-  });
+exports.getField = (req, parsedField) => {
+  value = req.body[parsedField[0]][parsedField[1]];
   return value;
 };
 function parseField(field) {
   return field.split(/\[|\]/).filter((s) => s);
 }
 exports.required = (field) => {
+  let parsedField = parseField(field);
   return (req, res, next) => {
-    if (getField(req, field)) {
+    if (getField(req, parsedField)) {
       next();
     } else {
       res.error("Required");

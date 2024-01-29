@@ -9,23 +9,24 @@ const message = require("./middleWare/message");
 const userSession = require("./middleware/user_session");
 const app = express();
 const myRoutes = require("./routers/index_routers");
-const port = "3000";
-
+// const morgan = require("morgan");
+const winston = require("winston");
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
-
+const port = process.env.PORT || "3000";
 console.log(app.get("env"));
-
+require("dotenv").config;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "css")));
 app.use(express.static(path.join(__dirname, "views")));
+// app.use(morgan("tiny"));
 
 app.use(
   session({
-    secret: "aboba",
+    secret: "process.env.SECRET",
     resave: false,
     saveUninitialized: true,
   })
@@ -48,7 +49,7 @@ app.use(userSession);
 app.use(myRoutes);
 
 app.listen(port, () => {
-  console.log(`listen on port ${port}`);
+  console.log(`listen on port = ` + port);
 });
 
 app.get("env") == "production";

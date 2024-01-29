@@ -19,10 +19,6 @@ db.run(createTableSQL, (err) => {
 class Entry {
   constructor() {}
   static create(data, cb) {
-    data.created_at = moment()
-      .tz("Europe/Moscow")
-      .format("YYYY-MM-DD HH:mm:ss");
-
     const sql =
       "INSERT INTO entries (username, title, content, image, created_at) VALUES (?, ?, ?, ?, ?)";
     db.run(
